@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const TOPIC_AMOUNT = 12;
 const lesson = {
@@ -6,11 +7,41 @@ const lesson = {
     timeLeft: 8
 };
 
+const topics = [{
+    id: 1,
+    icon: "",
+    name: "Money Basics",
+    description: "Learn what money does, where it goes, and how to stay in charge.",
+    lesson_count: 5
+},
+{
+    id: 2,
+    icon: "",
+    name: "Smart Spending",
+    description: "Spot trade-offs, compare choices, and spend without the regret.",
+    lesson_count: 4
+},
+{
+    id: 3,
+    icon: "",
+    name: "Saving Goals",
+    description: "Turn big dreams into small steps you can actually stick with.",
+    lesson_count: 6
+},
+{
+    id: 4,
+    icon: "",
+    name: "Earning & Work",
+    description: "Explore ways to earn and understand what your time is worth.",
+    lesson_count: 4
+}];
+
 const Dashboard = () => {
   return (
     <>
       {/*This is where NavBar is going to be
       with the Header and the NavLinks for Sign-up and Log-in*/}
+      <Navbar />
       <main>
         
         <section className="dashboardHero">
@@ -30,7 +61,7 @@ const Dashboard = () => {
             <div>
                 <p>CONTINUE LEARNING - {lesson.timeLeft} MIN</p>
                 <h2>{lesson.title}</h2>
-                {/* <ProgressBar lessonsLeft={lesson.context}/> */}
+                {/* We may add a progress bar or other interactive elements here */}
             </div>
             <div>
                 <button className="resumeButton">Resume</button>
@@ -44,7 +75,20 @@ const Dashboard = () => {
                 <p>view all {TOPIC_AMOUNT}</p>
             </div>
             <div className="topicCards">
-                {/* Map topic cards : could be a carousel */}
+                {
+                    topics && (
+                        topics.map((topic) => {
+                            return (
+                                <div key={topic.id} className="topicCard">
+                                <span>{topic.icon}</span>
+                                <h2>{topic.name}</h2>
+                                <h4>{topic.description}</h4>
+                                <p>{topic.lesson_count} lessons →</p>
+                            </div>
+                            )
+                        })
+                    )
+                }
             </div>
         </section>
       </main>
